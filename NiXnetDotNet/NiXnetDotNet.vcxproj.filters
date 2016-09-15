@@ -62,6 +62,9 @@
     <ClCompile Include="NiXnetSession.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NiXnetLinSchedule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">

@@ -52,6 +52,17 @@ cli::array<NiXnetSignal^>^ NiXnetCluster::Signals::get()
    return signals;
 }
 
+cli::array<NiXnetLinSchedule^>^ NiXnetCluster::LinSchedules::get()
+{
+   cli::array<nxDatabaseRef_t>^ handles = NiXnet::GetDbArrayValue<nxDatabaseRef_t>(m_handle, nxPropClst_LINSchedules);
+   cli::array<NiXnetLinSchedule^>^ schedules = gcnew cli::array<NiXnetLinSchedule^>(handles->Length);
+   for (int i = 0; i < handles->Length; i++)
+   {
+      schedules[i] = gcnew NiXnetLinSchedule(handles[i]);
+   }
+   return schedules;
+}
+
 NetString NiXnetCluster::ToString()
 {
    return this->Name;

@@ -13,8 +13,14 @@ NetString NiXnetSignal::Name::get()
    return NiXnet::GetDbStringValue(m_handle, nxPropSig_Name);
 }
 
+NetString NiXnetSignal::UniqueName::get()
+{
+   return NiXnet::GetDbStringValue(m_handle, nxPropSig_NameUniqueToCluster);
+}
+
 NiXnetByteOrder NiXnetSignal::ByteOrder::get()
 {
+
    return static_cast<NiXnetByteOrder>(NiXnet::GetDbValue<u32>(m_handle, nxPropSig_ByteOrdr));
 }
 

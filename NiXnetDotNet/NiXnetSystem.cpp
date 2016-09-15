@@ -20,6 +20,17 @@ cli::array<NiXnetDevice^>^ NiXnetSystem::ListDevices()
    return devices;
 }
 
+cli::array<NiXnetInterface^>^ NiXnetSystem::Interfaces::get()
+{
+   cli::array<u32>^ handles = NiXnet::GetArrayValue<u32>(m_session, nxPropSys_IntfRefs);
+   cli::array<NiXnetInterface^>^ interfaces = gcnew cli::array<NiXnetInterface^>(handles->Length);
+   for (int i = 0; i < handles->Length; i++)
+   {
+      interfaces[i] = gcnew NiXnetInterface(handles[i]);
+   }
+   return interfaces;
+}
+
 NiXnetSystem::~NiXnetSystem()
 {
    NiXnet::CheckStatus(nxSystemClose(m_session));

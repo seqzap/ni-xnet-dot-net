@@ -37,12 +37,12 @@ cli::array<NetString>^ NiXnetSession::FramesOrSignals::get()
 
 bool NiXnetSession::LinMaster::get()
 {
-   return NiXnet::GetValue<u32>(m_handle, nxPropSession_IntfLINMaster) != 0;
+   return NiXnet::GetValue<bool>(m_handle, nxPropSession_IntfLINMaster) != 0;
 }
 
 void NiXnetSession::LinMaster::set(bool _value)
 {
-   return NiXnet::SetValue<u32>(m_handle, nxPropSession_IntfLINMaster, _value);
+   return NiXnet::SetValue<bool>(m_handle, nxPropSession_IntfLINMaster, _value);
 }
 
 cli::array<NetString>^ NiXnetSession::LinScheduleNames::get()

@@ -95,6 +95,7 @@
     <ClCompile Include="NiXnetEcu.cpp" />
     <ClCompile Include="NiXnetFrame.cpp" />
     <ClCompile Include="NiXnetInterface.cpp" />
+    <ClCompile Include="NiXnetLinSchedule.cpp" />
     <ClCompile Include="NiXnetSession.cpp" />
     <ClCompile Include="NiXnetSignal.cpp" />
     <ClCompile Include="NiXnetSystem.cpp" />

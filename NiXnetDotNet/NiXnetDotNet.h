@@ -85,6 +85,13 @@ namespace NiXnetDotNet {
       SessionOnlyBlocking = nxStartStop_SessionOnlyBlocking,
    };
 
+   public enum class NiXnetLinScheduleRunMode : u32
+   {
+      Continous = nxLINSchedRunMode_Continuous,
+      Once = nxLINSchedRunMode_Once,
+      Null = nxLINSchedRunMode_Null,
+   };
+
    public ref class NiXnetInterface
    {
    private:
@@ -127,9 +134,9 @@ namespace NiXnetDotNet {
    public:
       NiXnetSystem();
       cli::array<NiXnetDevice^>^ ListDevices();
+      property cli::array<NiXnetInterface^>^ Interfaces{ cli::array<NiXnetInterface^>^ get(); }
       ~NiXnetSystem();
    };
-
 
    public ref class NiXnetSignal
    {
@@ -141,6 +148,7 @@ namespace NiXnetDotNet {
 
    public:
       property NetString Name { NetString get();  }
+      property NetString UniqueName { NetString get();  }
       property NiXnetByteOrder ByteOrder { NiXnetByteOrder get();  }
       property NiXnetDataType DataType { NiXnetDataType get();  }
       property double DefaultValue { double get();  }
@@ -186,6 +194,21 @@ namespace NiXnetDotNet {
       virtual NetString ToString() override;
    };
 
+   public ref class NiXnetLinSchedule
+   {
+   private:
+      u32 m_handle;
+
+   internal:
+      NiXnetLinSchedule(u32 _handle);
+
+   public:
+      property NetString Name { NetString get(); }
+      property NetString Priority { NetString get(); }
+      property NiXnetLinScheduleRunMode RunMode{ NiXnetLinScheduleRunMode get();  }
+      virtual NetString ToString() override;
+   };
+
    public ref class NiXnetCluster
    {
    private:
@@ -200,6 +223,7 @@ namespace NiXnetDotNet {
       property cli::array<NiXnetEcu^>^ Ecus { cli::array<NiXnetEcu^>^ get(); }
       property cli::array<NiXnetFrame^>^ Frames { cli::array<NiXnetFrame^>^ get(); }
       property cli::array<NiXnetSignal^>^ Signals { cli::array<NiXnetSignal^>^ get(); }
+      property cli::array<NiXnetLinSchedule^>^ LinSchedules { cli::array<NiXnetLinSchedule^>^ get(); }
       virtual NetString ToString() override;
    };
 
@@ -221,7 +245,7 @@ namespace NiXnetDotNet {
       nxSessionRef_t m_handle;
 
    public:
-      NiXnetSession(NetString _filenameOrAlias, NetString _clusterName, cli::array<NetString>^ _list, NetString _interface, NiXnetMode _mode);     
+      NiXnetSession(NetString _filenameOrAlias, NetString _clusterName, cli::array<NetString>^ _list, NetString _interface, NiXnetMode _mode);
       void Start(NiXnetScope _scope);
       void Stop(NiXnetScope _scope);
       property u32 NumberOfFramesOrSignals { u32 get();  }

@@ -37,7 +37,7 @@ cli::array<NiXnetFrame^>^ NiXnetEcu::FramesTansmitted::get()
 
 bool NiXnetEcu::LinMaster::get()
 {
-   return NiXnet::GetDbValue<u32>(m_handle, nxPropECU_LINMaster) != 0;
+   return NiXnet::GetDbValue<bool>(m_handle, nxPropECU_LINMaster);
 }
 
 NiXnetLinProtocolVersion NiXnetEcu::LinVersion::get()

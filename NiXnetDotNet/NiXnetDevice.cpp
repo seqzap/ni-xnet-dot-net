@@ -26,12 +26,12 @@ u32 NiXnetDevice::SerialNumber::get()
 cli::array<NiXnetInterface^>^ NiXnetDevice::Interfaces::get()
 {
    cli::array<u32>^ handles = NiXnet::GetArrayValue<u32>(m_handle, nxPropDev_IntfRefs);
-   cli::array<NiXnetInterface^>^ devices = gcnew cli::array<NiXnetInterface^>(handles->Length);
+   cli::array<NiXnetInterface^>^ interfaces = gcnew cli::array<NiXnetInterface^>(handles->Length);
    for (int i = 0; i < handles->Length; i++)
    {
-      devices[i] = gcnew NiXnetInterface(handles[i]);
+      interfaces[i] = gcnew NiXnetInterface(handles[i]);
    }
-   return devices;
+   return interfaces;
 }
 
 NetString NiXnetDevice::ToString()
