@@ -92,6 +92,14 @@ namespace NiXnetDotNet {
       Null = nxLINSchedRunMode_Null,
    };
 
+   public enum class NiXnetLinSleep : u32
+   {
+      RemoteSleep = nxLINSleep_RemoteSleep,
+      RemoteWake = nxLINSleep_RemoteWake,
+      LocalSleep = nxLINSleep_LocalSleep,
+      LocalWake = nxLINSleep_LocalWake,
+   };
+
    public ref class NiXnetInterface
    {
    private:
@@ -145,6 +153,7 @@ namespace NiXnetDotNet {
 
    internal:
       NiXnetSignal(nxDatabaseRef_t _handle);
+      property nxDatabaseRef_t Handle { nxDatabaseRef_t get() { return m_handle; };  }
 
    public:
       property NetString Name { NetString get();  }
@@ -246,14 +255,18 @@ namespace NiXnetDotNet {
 
    public:
       NiXnetSession(NetString _filenameOrAlias, NetString _clusterName, cli::array<NetString>^ _list, NetString _interface, NiXnetMode _mode);
+      NiXnetSession(cli::array<NiXnetSignal^>^ _signals, NetString _interface, NiXnetMode _mode);
+
       void Start(NiXnetScope _scope);
       void Stop(NiXnetScope _scope);
       property u32 NumberOfFramesOrSignals { u32 get();  }
       property cli::array<NetString>^ FramesOrSignals { cli::array<NetString>^ get(); }
       property bool LinMaster { bool get(); void set(bool); }
       property cli::array<NetString>^ LinScheduleNames { cli::array<NetString>^ get(); }
+      property NiXnetLinSleep LinSleep { void set(NiXnetLinSleep);  }
       property u32 LinScheduleIndex { void set(u32); }
       cli::array<System::Tuple<double, DateTime>^>^ ReadSignalSinglePoint();
+      void WriteSignalSinglePoint(cli::array<double>^ _values);
 
       ~NiXnetSession();
    };

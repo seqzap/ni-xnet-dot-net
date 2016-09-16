@@ -28,7 +28,6 @@ NetString NiXnet::GetStringValue(nxSessionRef_t _handle, u32 _propertyId)
    return ret;
 }
 
-
 generic<typename T> T NiXnet::GetValue(nxSessionRef_t _handle, u32 _propertyId)
 {
    T value;
