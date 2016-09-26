@@ -46,9 +46,11 @@ generic<typename T> cli::array<T>^ NiXnet::GetArrayValue(nxSessionRef_t _handle,
    NiXnet::CheckStatus(nxGetPropertySize(_handle, _propertyId, &propSize));
 
    cli::array<T> ^ ret = gcnew cli::array<T>(propSize / sizeof(T));
-   cli::pin_ptr<T> firstItem = &ret[0];
-   NiXnet::CheckStatus(nxGetProperty(_handle, _propertyId, propSize, firstItem));
-
+   if (ret->Length > 0)
+   {
+      cli::pin_ptr<T> firstItem = &ret[0];
+      NiXnet::CheckStatus(nxGetProperty(_handle, _propertyId, propSize, firstItem));
+   }
    return ret;
 }
 
@@ -77,9 +79,11 @@ generic<typename T> cli::array<T>^ NiXnet::GetDbArrayValue(nxDatabaseRef_t _hand
    NiXnet::CheckStatus(nxdbGetPropertySize(_handle, _propertyId, &propSize));
 
    cli::array<T> ^ ret = gcnew cli::array<T>(propSize / sizeof(T));
-   cli::pin_ptr<T> firstItem = &ret[0];
-   NiXnet::CheckStatus(nxdbGetProperty(_handle, _propertyId, propSize, firstItem));
-
+   if (ret->Length > 0)
+   {
+      cli::pin_ptr<T> firstItem = &ret[0];
+      NiXnet::CheckStatus(nxdbGetProperty(_handle, _propertyId, propSize, firstItem));
+   }
    return ret;
 }
 std::string NiXnet::AsString(NetString _string)
