@@ -12,11 +12,11 @@ using namespace System::Security::Permissions;
 // associated with an assembly.
 //
 [assembly:AssemblyTitleAttribute(L"NiXnetDotNet")];
-[assembly:AssemblyDescriptionAttribute(L"")];
+[assembly:AssemblyDescriptionAttribute(L".net interface to the National Instruments NI-XNET driver")];
 [assembly:AssemblyConfigurationAttribute(L"")];
-[assembly:AssemblyCompanyAttribute(L"")];
+[assembly:AssemblyCompanyAttribute(L"CIM Software Testing A/S")];
 [assembly:AssemblyProductAttribute(L"NiXnetDotNet")];
-[assembly:AssemblyCopyrightAttribute(L"Copyright (c)  2016")];
+[assembly:AssemblyCopyrightAttribute(L"Copyright (c) CIM Software Testing A/S 2016")];
 [assembly:AssemblyTrademarkAttribute(L"")];
 [assembly:AssemblyCultureAttribute(L"")];
 
@@ -31,7 +31,7 @@ using namespace System::Security::Permissions;
 // You can specify all the value or you can default the Revision and Build Numbers
 // by using the '*' as shown below:
 
-[assembly:AssemblyVersionAttribute("1.0.*")];
+[assembly:AssemblyVersionAttribute("1.0.0.0")];
 
 [assembly:ComVisible(false)];
 
